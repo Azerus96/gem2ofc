@@ -4,10 +4,9 @@
     <title>Training Mode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> </head>
 <body>
-    <button class="menu-toggle" onclick="toggleMenu()">
+    <button class="menu-toggle" onclick="game.toggleMenu()">
         <span class="material-icons">menu</span>
     </button>
 
@@ -53,7 +52,7 @@
         </div>
     </div>
 
-    <button class="fullscreen-btn" onclick="toggleFullScreen()">
+    <button class="fullscreen-btn" onclick="game.toggleFullScreen()">
         <span class="material-icons">fullscreen</span>
     </button>
 
@@ -99,14 +98,12 @@
     <div id="training-progress">
         Прогресс обучения: <span id="progress-value">0</span>%
     </div>
-    <button id = "reset-training-button" onclick="game.resetAI()">Сбросить обучение</button>
+    <button id="reset-training-button" onclick="game.resetAI()">Сбросить обучение</button>
 
     <script src="{{ url_for('static', filename='common.js') }}"></script>
     <script>
-        let game = new Game(); // Создаем экземпляр класса Game
-        document.addEventListener('DOMContentLoaded', () => {
-            game.init();
-        });
+        let game = new Game();
+        game.init(); // Вызываем init()
     </script>
 </body>
 </html>
