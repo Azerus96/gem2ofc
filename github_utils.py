@@ -3,7 +3,7 @@ import os
 import base64
 import logging
 import time
-from typing import Optional
+from typing import Optional, Any
 
 # Настройка логирования
 logger = logging.getLogger(__name__)
