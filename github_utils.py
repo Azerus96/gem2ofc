@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 # GitHub repository settings (can be overridden by environment variables)
 GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME") or "Azerus96"  # Default value
-GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY") or "grofc"  # Default value
+GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY") or "gem2ofc"  # Default value
 AI_PROGRESS_FILENAME = "cfr_data.pkl"
 
 
