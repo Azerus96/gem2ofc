@@ -7,7 +7,7 @@ import time
 import json
 from threading import Thread, Event
 import logging
-from typing import Dict, Optional, List, Any
+from typing import Dict, Optional, List, Any, Union
 
 # Настройка логирования
 logging.basicConfig(
@@ -35,7 +35,7 @@ class GameManager:
             "stopThreshold": 0.0001,
             "aiType": "mccfr",
         }
-        self.ai_agent: Union[CFRAgent, RandomAgent, None] = None #CFRAgent | RandomAgent | None
+        self.ai_agent: Union[CFRAgent, RandomAgent, None] = None
         self.previous_ai_settings: Dict[str, Any] = {}  # Для отслеживания изменений
 
     def initialize_ai(self, ai_settings: Optional[Dict[str, Any]] = None) -> None:
@@ -128,9 +128,10 @@ class GameManager:
         timeout_event = Event()
         result: Dict[str, Any] = {"move": None}
 
+        # ИСПРАВЛЕННАЯ СТРОКА (без self):
         ai_thread = Thread(
             target=self.ai_agent.get_move,
-            args=(self.game_state, timeout_event, result)  # ИСПРАВЛЕНО: убран self
+            args=(self.game_state, timeout_event, result)
         )
         ai_thread.start()
         ai_thread.join(timeout=int(self.ai_settings["aiTime"]))
