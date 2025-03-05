@@ -3,3 +3,4 @@ Werkzeug==2.3.7
 gunicorn==20.1.0
 PyGithub==1.59.1
 numpy==1.24.3
+gevent
