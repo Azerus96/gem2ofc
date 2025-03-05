@@ -14,7 +14,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install gunicorn
 
 # Задаем команду для запуска приложения (для production)
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# Используем gevent worker и 1 worker для начала.  Можно изменить при необходимости.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--worker-class", "gevent", "app:app"]
+
 
 # (Опционально) Команда для запуска в режиме разработки (для локального тестирования)
+# Раскомментируйте следующую строку и закомментируйте строку с gunicorn, если хотите использовать
+# встроенный сервер Flask для разработки.
 # CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
