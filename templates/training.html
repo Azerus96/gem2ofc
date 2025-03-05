@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Training Mode</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleMenu()">
+        <span class="material-icons">menu</span>
+    </button>
+
+    <div class="menu-panel">
+        <h3>Настройки</h3>
+        <div class="setting-group">
+            <label for="fantasyType">Тип фантазии:</label>
+            <select id="fantasyType">
+                <option value="normal">Обычная</option>
+                <option value="progressive">Прогрессивная</option>
+            </select>
+        </div>
+        <div class="setting-group">
+            <div class="checkbox-container">
+                <input type="checkbox" id="fantasyMode">
+                <label for="fantasyMode">Режим фантазии</label>
+            </div>
+        </div>
+        <div class="setting-group">
+            <label for="aiTime">Время на ход ИИ (сек):</label>
+            <input type="range" id="aiTime" min="1" max="60" value="60">
+            <span id="aiTimeValue">60</span>
+        </div>
+        <div class="setting-group">
+            <label for="iterations">Количество итераций MCCFR:</label>
+            <input type="range" id="iterations" min="100" max="1000000" value="500000">
+            <span id="iterationsValue">500000</span>
+        </div>
+        <div class="setting-group">
+            <label for="stopThreshold">Порог остановки обучения:</label>
+            <input type="range" id="stopThreshold" min="0.0001" max="0.1" value="0.0001" step="0.0001">
+            <span id="stopThresholdValue">0.0001</span>
+        </div>
+        <div class="setting-group">
+            <label for="aiType">Тип ИИ:</label>
+            <select id="aiType">
+                <option value="random">Случайный</option>
+                <option value="mccfr" selected>MCCFR</option>
+            </select>
+        </div>
+        <div class="setting-group">
+            <button onclick="game.saveSettings()">Ок</button>
+        </div>
+    </div>
+
+    <button class="fullscreen-btn" onclick="toggleFullScreen()">
+        <span class="material-icons">fullscreen</span>
+    </button>
+
+    <div class="controls">
+        <button onclick="game.resetTraining()">Сброс</button>
+    </div>
+
+    <div class="total-royalty" id="total-royalty"></div>
+    <div class="table">
+        <div class="row top" id="top-row"></div>
+        <div class="row middle" id="middle-row"></div>
+        <div class="row bottom" id="bottom-row"></div>
+    </div>
+
+    <div class="card-controls">
+        <div class="selector-row">
+            <div class="selector-item" data-rank="A">A</div>
+            <div class="selector-item" data-rank="K">K</div>
+            <div class="selector-item" data-rank="Q">Q</div>
+            <div class="selector-item" data-rank="J">J</div>
+            <div class="selector-item" data-rank="10">10</div>
+            <div class="selector-item" data-rank="9">9</div>
+            <div class="selector-item" data-rank="8">8</div>
+            <div class="selector-item" data-rank="7">7</div>
+            <div class="selector-item" data-rank="6">6</div>
+            <div class="selector-item" data-rank="5">5</div>
+            <div class="selector-item" data-rank="4">4</div>
+            <div class="selector-item" data-rank="3">3</div>
+            <div class="selector-item" data-rank="2">2</div>
+        </div>
+        <div class="selector-row">
+            <button class="selector-item action-button" onclick="game.distributeCards()">+</button>
+            <div class="selector-item" data-suit="♥">♥</div>
+            <div class="selector-item" data-suit="♦">♦</div>
+            <div class="selector-item" data-suit="♣">♣</div>
+            <div class="selector-item" data-suit="♠">♠</div>
+            <button class="selector-item action-button" onclick="game.removeSelectedCards()">-</button>
+        </div>
+    </div>
+
+    <div class="combination-area" id="combination-area"></div>
+
+    <div id="training-progress">
+        Прогресс обучения: <span id="progress-value">0</span>%
+    </div>
+    <button id = "reset-training-button" onclick="game.resetAI()">Сбросить обучение</button>
+
+    <script src="{{ url_for('static', filename='common.js') }}"></script>
+    <script>
+        let game = new Game(); // Создаем экземпляр класса Game
+        document.addEventListener('DOMContentLoaded', () => {
+            game.init();
+        });
+    </script>
+</body>
+</html>
