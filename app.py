@@ -130,7 +130,7 @@ class GameManager:
 
         ai_thread = Thread(
             target=self.ai_agent.get_move,
-            args=(self.game_state, timeout_event, result)
+            args=(self.game_state, timeout_event, result)  # ИСПРАВЛЕНО: убран self
         )
         ai_thread.start()
         ai_thread.join(timeout=int(self.ai_settings["aiTime"]))
