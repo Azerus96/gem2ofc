@@ -2,7 +2,7 @@
 
 # GitHub settings
 GITHUB_USERNAME = "Azerus96"  # Замените на свой username
-GITHUB_REPOSITORY = "grofc"  # Замените на имя своего репозитория
+GITHUB_REPOSITORY = "gem2ofc"  # Замените на имя своего репозитория
 AI_PROGRESS_FILENAME = "cfr_data.pkl"
 AI_PROGRESS_TOKEN = "" # Заполняется в Google Colab
 
